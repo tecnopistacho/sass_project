@@ -1,0 +1,205 @@
+// Style components using nesting and '&' for modifiers
+.site-header {
+    background-color: $primary-color;
+    color: white;
+
+    .logo {
+        font-family: $font-stack;
+        span {
+            color: $secondary-color;
+        }
+    }
+
+    .main-nav {
+        display: flex;
+        gap: $spacing-unit;
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+
+            &.is-active {
+                font-weight: bold;
+                border-bottom: 2px solid $secondary-color;
+            }
+        }
+    }
+
+    .btn-primary {
+        @include btn($secondary-color, $primary-color);
+    }
+}
+
+.hero {
+    background-color: $primary-color;
+    color: white;
+    padding: $spacing-unit * 4 0;
+
+    .container {
+        @include container;
+        text-align: center;
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: $spacing-unit;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: $spacing-unit * 2;
+        }
+
+        .btn-secondary {
+            @include btn(white, $primary-color);
+            font-weight: bold;
+        }
+    }
+
+    @include respond-to (tablet) {
+        .container {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+.card {
+    background-color: lighten($primary-color, 35%);
+    color: $text-color;
+    padding: $spacing-unit * 2;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: $spacing-unit;
+    }
+
+    p {
+        font-size: 1rem;
+        margin-bottom: $spacing-unit;
+    }
+
+    .link {
+        color: $primary-color;
+        text-decoration: underline;
+
+        &:hover {
+            color: darken($primary-color, 10%);
+        }
+    }
+
+    @include respond-to(tablet) {
+        padding: $spacing-unit * 1.5;
+
+        h3 {
+            font-size: 1.3rem;
+        }
+    }
+}
+
+.sidebar {
+    background-color: darken($primary-color, 10%);
+    color: white;
+    padding: $spacing-unit * 2;
+    border-radius: 8px;
+    margin-top: $spacing-unit * 2;
+
+    h4 {
+        font-size: 1.2rem;
+        margin-bottom: $spacing-unit;
+    }
+
+    .hours {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+    }
+
+    @include respond-to(tablet) {
+        padding: $spacing-unit * 1.5;
+
+        h4 {
+            font-size: 1rem;
+        }
+
+        li {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: $spacing-unit * 2;
+    margin-top: $spacing-unit * 2;
+
+    @include respond-to(tablet) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.container {
+    @include container;
+}
+
+.site-footer {
+    background-color: $primary-color;
+    color: white;
+    padding: $spacing-unit * 2 0;
+
+    .container {
+        @include container;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: $spacing-unit;
+
+        p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .social {
+            display: flex;
+            gap: $spacing-unit;
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+
+                &:hover {
+                    color: $secondary-color;
+                }
+            }
+        }
+    }
+
+    @include respond-to(tablet) {
+        .container {
+            flex-direction: column;
+            text-align: center;
+
+            .social {
+                justify-content: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+// Uudelleenkäytettäviä tyylejä (btn, container, respond-to). Reusable mixins for buttons, containers, and media queries::after
+
+// A mixin in Sass is like a reusable block of CSS code. 
+// Instead of repeating styles over and over, you define them once and then 
+// include them wherever needed using @include.
+
+// Mixin is like a toolbox
+    // btn() builds buttons with custom colors
+    // container keeps layout consistent
+    // respond-to() makes your side responsive with clean media queries
+
+
+// Mixin button style. 2 parameters: 
+    // $bg-color: background color of the button
+    // $text-color: text color of the button
+    // We use $spacing-unit variable for the padding
+    // Basic button styling: no border, rounded corners, pointer cursor.
+    // How to use:
+        // .btn-primary {
+                // @include btn($secondary-color, $primary-color);
+        // }
+@mixin btn($bg-color, $text-color){
+    padding: $spacing-unit $spacing-unit * 2;
+    background-color: $bg-color;
+    color: $text-color;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+// Centered container with a max width, padding.
+    // Used to keep content aligned and readable
+    // How to use it:
+        // .container {
+            // @include container;
+        // }
+@mixin container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-unit;
+}
+
+// This mixin allows to write responsive styles using a simple keyword like tablet or mobile
+// Checks the value of $breakpoint and inserts a media query
+// @content is a special Sass feature - it means "insert whatever styles are inside the @include block"
+    // How to use it:
+    // @include respond-to(tablet {
+        // font-size: 1.2rem;
+    //}
+
+    // This compiles to:
+    // @media (max-width: 768px) {
+        // font-size: 1.2rem;
+    // }
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == tablet {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+    @if $breakpoint == mobile {
+        @media (max-width: 480px) {
+            @content;
+        }
+    }
+}
